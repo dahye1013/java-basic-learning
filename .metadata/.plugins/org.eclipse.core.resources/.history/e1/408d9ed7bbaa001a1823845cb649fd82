@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="UTF-8"%>
+<%
+//String name = request.getParameter("name");
+//String id = request.getParameter("id"); 
+String name = null;
+String id = null;
+
+//쿠키
+//특정 쿠키를 얻지 못하고 모든 쿠키를 얻어오기
+
+//세션
+
+
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<img src="../image/bb.PNG" onclick="javascrpit:location.href='../main/index.jsp'" 
+style="cursor: pointer;">
+
+<br>
+ <%= name %>님<br>
+로그인 성공<br><br>
+	<input type="reset" value="로그아웃">
+	<input type="submit" value="회원정보수정" onclick=javascrpit:location.href='modifyForm.jsp?id=<%=id %>'>
+</body>
+</html>

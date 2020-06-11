@@ -1,0 +1,66 @@
+<%@page import="java.net.URLEncoder"%>
+<%@page import="member.bean.MemberDTO"%>
+<%@page import="member.dao.MemberDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%
+//데이터 받아오기
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		
+//DB
+	
+	MemberDAO memberDAO = MemberDAO.getInstance();
+	String name = memberDAO.loginMember(id, pwd);
+	MemberDTO memberDTO = memberDAO.getMemberInfo(id);
+	
+	MemberDTO dto = memberDAO.getMember(id);
+	String email = dto.getEmail1() +"@"+dto.getEmail2();
+	
+//응답
+
+//request.setAttribute("id",id); 
+//이렇게는 아무리해도 값을 모른다.
+
+
+%>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>로그인 성공 여부</title>
+</head>
+<body>
+<form name="login" method="post" action="modifyForm.jsp">
+<%if(name ==null) {
+	 response.sendRedirect("loginFail.jsp");	
+	}else{ 
+/* 	//쿠키 생성
+	Cookie cookie = new Cookie("memName",name);
+	cookie.setMaxAge(30*60); //초 단위, 30분
+	response.addCookie(cookie);	//클라언트에게 보내기
+	
+	Cookie cookie2 = new Cookie("memId",id);
+	cookie2.setMaxAge(30*60);
+	response.addCookie(cookie2);	//클라언트에게 보내기 */
+	
+	//세션 생성
+	//HttpSession session  = request.getSession(); --이미 생성되있다.
+	session.setAttribute("memName",name);
+	session.setAttribute("memId",id);
+	session.setAttribute("memEmail",email);
+	
+	session.setAttribute("memDTO",memberDTO); //세션에 이와같이  DTO를 통채로 넣을 수 있다.
+	
+	
+	//페이지 이동
+	response.sendRedirect("loginOk.jsp");
+	//	response.sendRedirect("loginOk.jsp?name="+URLEncoder.encode(name,"UTF-8")+"&id="+id);
+	}%>
+
+
+</form>
+<br><br>
+
+</body>
+</html>

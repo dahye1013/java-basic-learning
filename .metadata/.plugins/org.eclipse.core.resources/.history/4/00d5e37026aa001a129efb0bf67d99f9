@@ -1,0 +1,33 @@
+<%@page import="board.dao.BoardDAO.BoardDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%
+//데이터 받아오기
+		request.setCharacterEncoding("UTF-8");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+
+//DB
+	
+	BoardDAO boardDAO = BoardDAO.getInstance();
+	int su = boardDAO.writeBoard(subject, content);
+	
+//응답
+
+//request.setAttribute("id",id); 
+//이렇게는 아무리해도 값을 모른다.
+
+
+%>
+
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%= subject%> 제목의 글 <br>
+작성하신 글<%= su%>개가 저장되었습니다.
+</body>
+</html>

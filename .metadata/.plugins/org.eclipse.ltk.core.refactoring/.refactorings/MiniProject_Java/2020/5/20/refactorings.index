@@ -1,0 +1,16 @@
+1589280865610	Delete element
+1589369975898	Rename method 'insertArticle'
+1589418282793	Move compilation unit
+1589418426071	Move compilation unit
+1589440588682	Copy compilation unit
+1589440601255	Rename type 'MyPage'
+1589440610294	Rename type 'MemberPage'
+1589510231647	Rename type 'lendDAO'
+1589510272793	Rename type 'lendDTO'
+1589515092154	Delete element
+1589521757542	Delete element
+1589532848137	Rename method 'getLengJoin'
+1589536162191	Rename field 'status'
+1589536171069	Rename method 'getStatus'
+1589536178282	Rename method 'setStatus'
+1589536258672	Rename local variable 'status'

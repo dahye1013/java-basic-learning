@@ -1,0 +1,118 @@
+function checkWriteForm() {
+   // 현재문서.폼이름
+   // if(document.writeForm.name.value == "") {
+   if (document.getElementById("name").value == "") {
+      alert("이름을 입력하세요");
+      document.writeForm.name.focus();
+   } else if (document.writeForm.id.value == "") {
+      alert("아이디를 입력하세요");
+      document.writeForm.id.focus();
+   } else if (document.writeForm.pwd.value == "") {
+      alert("비밀번호를 입력하세요");
+      document.writeForm.pwd.focus();
+   } else if (document.writeForm.repwd.value == "") {
+      alert("비밀번호를 재확인해주세요");
+      document.writeForm.repwd.focus();
+   } else if (document.writeForm.pwd.value != document.writeForm.repwd.value) {
+      alert("비밀번호가 일치하지 않습니다");
+      document.writeForm.pwd.focus();
+   } else if (document.writeForm.idDuplication.value != "idCheck") {
+      alert("아이디 중복체크를 해주세요");
+//   } else if (document.writeForm.id.value != document.writeForm.idDuplication.value) {
+//      alert("아이디 중복체크를 해주세요");
+   } else
+      alert("회원가입 성공!");
+      //document.writeForm.submit();
+}
+
+function checkLoginFrom() {
+   // 현재문서.폼이름
+   // if(document.writeForm.name.value == "") {
+   if (document.loginForm.id.value == "") {
+      alert("아이디를 입력하세요");
+      document.loginForm.id.focus();
+   } else if (document.loginForm.pwd.value == "") {
+      alert("비빌번호를 입력하세요");
+      document.loginForm.pwd.focus();
+   } else
+      document.loginForm.submit();
+}
+
+function checkId() {
+   //자바 스크립트는 변수 자료형이 없다
+   //let: 지역변수
+   let id = document.writeForm.id.value;
+   if(id == ""){
+      alert("아이디를 먼저 입력해주세요");
+      document.writeForm.id.focus();
+   }else
+      window.open("checkId.jsp?id="+id,"","width=300 height=100");
+      //window.open("파일위치",??,창의 크기) :팝업창
+      //checkId.jsp은 member 폴더에 만들어야한다
+      //checkId.jsp?id="+id id실어보내기
+}
+
+function checkInputId() {
+   document.writeForm.idDuplication.value="idUncheck";
+}
+
+function checkIdClose(id){
+   
+   opener.writeForm.id.value=id;
+   opener.writeForm.idDuplication.value = "idCheck";   
+   //opener는 열려있는 창
+   window.close();
+   opener.writeForm.pwd.focus();
+   
+   
+   
+}
+
+function checkPost(){
+   window.open("checkPost.jsp","","width=500 height=500 scrollbars=yes");
+}
+
+function checkPostClose(zipcode, address){
+   
+   opener.document.forms[0].zipcode.value=zipcode;
+   opener.document.forms[0].addr1.value = address;
+   //opener.writeForm.idDuplication.value = id;      
+   //opener는 열려있는 창
+   window.close();
+   opener.document.forms[0].addr2.focus();
+   
+   
+   /*
+   opener.document.getElementById("zipcode").value = zipcode;
+   opener.document.getElementById("addr1").value = addr1;
+   window.close();
+   opener.document.getElementById("addr2").focus();
+   */
+}
+
+function checkLoginFrom(){
+   //현재문서.폼이름
+   //if(document.writeForm.name.value == "") {
+   if(document.loginForm.id.value == ""){
+      alert("아이디를 입력하세요");
+      document.loginForm.id.focus();
+   }else if(document.loginForm.pwd.value == "") {
+      alert("비빌번호를 입력하세요");
+      document.loginForm.pwd.focus();
+   }else document.loginForm.submit();
+ } 
+
+function checkModifyForm() {
+	System.out.println("회원정보 입력 fuction");
+   if (document.getElementById("name").value == "") {
+      alert("이름을 입력하세요");
+      document.modifyForm.name.focus();
+   } else if (document.modifyForm.pwd.value == "") {
+      alert("비밀번호를 입력하세요");
+      document.modifyForm.pwd.focus();
+   } else if (document.modifyForm.pwd.value != document.modifyForm.repwd.value) {
+      alert("비밀번호가 일치하지 않습니다");
+      document.modifyForm.pwd.focus();
+   } else
+      document.modifyForm.submit();
+}

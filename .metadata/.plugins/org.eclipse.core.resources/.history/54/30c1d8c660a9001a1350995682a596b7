@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    <%
+  //데이터
+    request.setCharacterEncoding("UTF-8");
+
+    int x = Integer.parseInt(request.getParameter("x"));
+    int y = Integer.parseInt(request.getParameter("y"));
+
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<form name="sumForm" method="post" action="mul.jsp">
+<%= x %>+<%= y %> = <%= x+y %>
+<br><br>
+<input type="hidden" name="x" value=<%= x %>>
+<input type="hidden" name="y" value=<%= y %>>
+<input type="submit" value="곱 구하기" onclick="location.href='mul.jsp'">
+
+
+</form>
+<!--
+<input type="button" value="곱 구하기" onclick="location.href='mul.jsp?x=<%= x %>&y=<%= y %>'"> 
+-->
+</body>
+</html>

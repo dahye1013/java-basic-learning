@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<jsp:useBean id="dataDTO" class="exam.bean.DataDTO" scope="session"/>
+<jsp:setProperty property="x" name="dataDTO"/>
+<jsp:setProperty property="y" name="dataDTO"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<form name="sumForm" method="post" action="mul.jsp">
+<jsp:getProperty property="x" name="dataDTO"/>
+<jsp:getProperty property="y" name="dataDTO"/>
+
+<br><br>
+<input type="hidden" name="x" value=<%= x %>>
+<input type="hidden" name="y" value=<%= y %>>
+<input type="submit" value="곱 구하기" onclick="location.href='mul.jsp'">
+
+
+</form>
+<!--
+<input type="button" value="곱 구하기" onclick="location.href='mul.jsp?x=<%= x %>&y=<%= y %>'"> 
+-->
+</body>
+</html>

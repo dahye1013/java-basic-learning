@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form>
+		<table border="1" cellspacing="0" cellpadding="5">
+			<tr>
+				<td>X</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Y</td>
+				<td></td>
+			</tr>
+			<tr>
+			<td colspan="2" align="center">
+				<input type="button" value="합 구하기" onclick="checkWriteForm()"> &emsp;
+			    <input type="reset" value="취소">
+			</tr>
+			
+
+
+		</table>
+	</form>
+</body>
+</html>

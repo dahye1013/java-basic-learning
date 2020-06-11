@@ -1,0 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%
+String apple = (String)request.getAttribute("apple"); 
+//페이지 이동
+%>
+
+<jsp:forward page="forwardResult.jsp"/>

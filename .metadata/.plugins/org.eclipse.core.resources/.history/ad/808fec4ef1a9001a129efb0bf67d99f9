@@ -1,0 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+
+<img src="../image/aa.PNG" width=170 height=150>
