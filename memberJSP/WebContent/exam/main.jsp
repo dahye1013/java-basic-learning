@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,13 +14,13 @@
 <jsp:include page="image.jsp"/>
 
 <%
-String name = "ȫ�浿";
+String name = "홍길동";
 %>
 <br>
 <br>
 main.jsp name = <%=name %>
 
-<h3>** 3�ʵڿ� ������ �̵� **</h3>
+<h3>** 3초뒤에 페이지 이동 **</h3>
 <% response.setHeader("Refresh","3;url=input.jsp"); %>
 </body>
 </html>

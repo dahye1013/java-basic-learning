@@ -1,9 +1,9 @@
-<%@page import="board.dao.BoardDAO.BoardDAO"%>
-<%@page import="board.bean.BoardDTO.BoardDTO"%>
+<%@page import="board.dao.BoardDAO"%>
+<%@page import="board.bean.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-
+    
     int pg = Integer.parseInt(request.getParameter("pg"));
     int seq = Integer.parseInt(request.getParameter("seq"));
     
@@ -43,6 +43,12 @@
 </table>
 <br><br>
 <input type = button value="목록" onclick="location.href='boardList.jsp?pg=<%=pg%>'">
+<br><br>
+<% if(session.getAttribute("memId").equals(dto.getId())){%>
+<input type="button" value="글수정" onclick="location.href='boardModifyForm.jsp?seq=<%= seq%>&pg=<%= pg%>'">
+<input type="button" value="글삭제" onclick="location.href=''">
+<%}%>
+
 </body>
 
 </html>

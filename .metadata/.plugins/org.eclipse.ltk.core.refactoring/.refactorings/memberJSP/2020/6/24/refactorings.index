@@ -2,3 +2,5 @@
 1591600980763	Move 'input.jsp' to 'exam'
 1591601000275	Move 'mul.jsp' to 'exam'
 1591601483294	Move 'exam' to 'WebContent'
+1591926831068	Rename package 'board.bean.BoardDTO'
+1591926836782	Rename package 'board.dao.BoardDAO'

@@ -1,6 +1,0 @@
-<%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-
-¿À´Ã ³¯Â¥ : <%= new Date() %>
-

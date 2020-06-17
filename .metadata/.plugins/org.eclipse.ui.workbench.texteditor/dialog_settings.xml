@@ -6,8 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="today"/>
+		<item key="selection" value="body"/>
 		<list key="findhistory">
+			<item value="body"/>
+			<item value="original"/>
+			<item value="count"/>
+			<item value="context"/>
+			<item value="while"/>
+			<item value="location"/>
 			<item value="today"/>
 			<item value="after"/>
 			<item value="before"/>
@@ -17,12 +23,6 @@
 			<item value="촏차"/>
 			<item value="write"/>
 			<item value="ㅈ걋ㄷ"/>
-			<item value="checkmodify"/>
-			<item value="getMember"/>
-			<item value="getmember"/>
-			<item value="getmemver"/>
-			<item value="login"/>
-			<item value="checkLog"/>
 		</list>
 		<list key="replacehistory">
 		</list>

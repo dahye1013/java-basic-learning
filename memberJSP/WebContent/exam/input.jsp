@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form name="inputForm" method="get" action="sum.jsp">
+	<form method="get" action="elResult.jsp">
 		<table border="1" cellspacing="0" cellpadding="5">
 			<tr>
 				<td>X</td>
@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 			<td colspan="2" align="center">
-				<input type="submit" value="합 구하기" > &emsp;
+				<input type="submit" value="계산" > &emsp;
 			    <input type="reset" value="취소">
 			</tr>
 			

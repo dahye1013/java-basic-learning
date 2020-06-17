@@ -4,12 +4,7 @@
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-<jsp:useBean id="memberDTO" class="member.bean.MemberDTO" scope="session"/>
-<jsp:setProperty property="*" name="memberDTO"/>
-<%
-MemberDAO memberDAO = MemberDAO.getInstance();
-memberDAO.writeMember(memberDTO);
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +16,7 @@ memberDAO.writeMember(memberDTO);
 </body>
 <script type="text/javascript">
 window.onload=function(){
-	alert("회원가입  완료");
-	location.href="loginForm.jsp"
+	location.href="loginForm.do"
 }
 </script>
 </html>

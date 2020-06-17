@@ -8,16 +8,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import member.bean.MemberDTO;
 import member.bean.ZipcodeDTO;
 
 public class MemberDAO {
 	private static MemberDAO instance;
 	// ----------------------------------DB-------------------------------
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String username = "c##java";
-	String password = "bit";
+
+	//context.xml을 통해 pool을 따로 만들어서 필요없어진다.
+	// driver 와 getconnection도 필요없어짐
+	
+	private DataSource ds; //javax sql을 import한다.
+	
 	Connection conn;
 	PreparedStatement pstmt;
 	private ResultSet rs;
@@ -32,27 +39,25 @@ public class MemberDAO {
 	}
 
 	public MemberDAO() {
+		
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("드라이버 로딩 성공");
-		} catch (ClassNotFoundException e) {
+			Context ctx = new InitialContext(); // context는 인터페이스라 new InitialContext로 초기화해준다, import는 javax naming
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 
-	public void getConnection() {
-		try {
-			conn = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	public void writeMember(MemberDTO memberDTO) {
 		int su = 0;
-		getConnection();
 		String sql = "insert into member values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 		try {
+			conn = ds.getConnection(); // dataSource가 getConnection을 가진다.
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getName());
 			pstmt.setString(2, memberDTO.getId());
@@ -84,10 +89,10 @@ public class MemberDAO {
 
 	public List<MemberDTO> getMemberList() {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
-		getConnection();
 		String sql = "select*from member";
 
 		try {
+			conn = ds.getConnection(); 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();// 실행
 			while (rs.next()) {
@@ -128,9 +133,9 @@ public class MemberDAO {
 	public MemberDTO getMember(String id) {
 		MemberDTO memberDTO = null;
 		String sql = "select * from member where id=?";
-		getConnection();
-		
+
 		try {
+			conn = ds.getConnection(); 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			
@@ -168,10 +173,10 @@ public class MemberDAO {
 	}
 	public MemberDTO getMemberInfo(String id) {
 		MemberDTO memberDTO = new MemberDTO();
-		getConnection();
 		String sql = "select * from member where id = ? ";
 
 		try {
+			conn = ds.getConnection(); 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery(); // 실행
@@ -212,8 +217,8 @@ public class MemberDAO {
 	public String loginMember(String id, String pwd) {
 		String name = null;
 		String sql = "select*from member where id=? and pwd=?";
-		getConnection();
 		try {
+			conn = ds.getConnection(); 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
@@ -243,8 +248,8 @@ public class MemberDAO {
 	public boolean isExistedId(String id) {
 		String result=null;
 		String sql = "select id from member where id=?";
-		getConnection();
 		try {
+			conn = ds.getConnection(); 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 
@@ -276,10 +281,10 @@ public class MemberDAO {
 	
 	public List<ZipcodeDTO> getZipcodeList(String sido, String sigungu,String roadname) {
 		List<ZipcodeDTO> list = new ArrayList<ZipcodeDTO>();
-		getConnection();
 		String sql = "select * from newzipcode where sido like ? and nvl(sigungu,'0') like ? and roadname like ? ";
 
 		try {
+			conn = ds.getConnection(); 
 			pstmt = conn.prepareStatement(sql);
 			// 실행
 			pstmt.setString(1, "%"+sido+"%");
@@ -321,7 +326,6 @@ public class MemberDAO {
 	
 
 	public void modifyMember(MemberDTO memberDTO) {
-		getConnection();
 		String sql = "update member set name=? ,"
 				+ "pwd=? ,"
 				+ "gender=? ,"
@@ -337,6 +341,7 @@ public class MemberDAO {
 		
 		
 		try {
+			conn = ds.getConnection(); 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getName());
 			pstmt.setString(2, memberDTO.getPwd());

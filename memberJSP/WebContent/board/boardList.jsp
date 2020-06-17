@@ -1,9 +1,10 @@
+<%@page import="board.bean.BoardPaging"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="board.bean.BoardDTO.BoardDTO"%>
-<%@page import="board.dao.BoardDAO.BoardDAO"%>
+<%@page import="board.bean.BoardDTO"%>
+<%@page import="board.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -17,16 +18,28 @@ int pg = Integer.parseInt(request.getParameter("pg"));
 
 SimpleDateFormat dateFormat = new SimpleDateFormat ( "yyyy-MM-dd");
 SimpleDateFormat timeFormat = new SimpleDateFormat ( "HH시mm분");
+
+
 // DB
 BoardDAO boardDAO = new BoardDAO();
 Date today = new Date();
+
+
 //페이징처리 -1페이지당 5개씩
-int endNum = pg*5;
+BoardPaging boardPaging = new BoardPaging();
+int totalA = boardDAO.getTotalA();//총글수
+boardPaging.setCurrentPage(pg);
+boardPaging.setPageBlock(3);
+boardPaging.setPageSize(5);
+boardPaging.setTotalA(totalA);
+boardPaging.makePagingHTML();
+
+
+
+ int endNum = pg*5;
 int startNum = endNum-4;
 list=boardDAO.boardList(startNum, endNum);
-
- int totalA = boardDAO.getTotalA(); //총 글수 
- int totalP = (totalA+4)/5;  //더할때는 나누는수 -1을 나눈다
+ int totalP = (totalA+4)/5;  //더할때는 나누는수 -1을 나눈다 */
 
 %>
 <!DOCTYPE html>
@@ -85,12 +98,15 @@ list=boardDAO.boardList(startNum, endNum);
       
 	         </table>
 	         
-			<%for(int i=1; i<=totalP; i++) {
+<%--  			<%for(int i=1; i<=totalP; i++) {
 				if(i==pg){ %>
 					<a id=currentPaging href='/memberJSP/board/boardList.jsp?pg=<%= i%>'>[<%= i%>]</a>
 				<% }else {%>
 					<a id=paging href='/memberJSP/board/boardList.jsp?pg=<%= i%>'>[<%= i%>]</a>
-	<%	}	}%>	        
+	<%	}	}%>	   --%>     
+	
+	<div style="width: 600px; text-align: center;"> <%= boardPaging.getPagingHTML() %></div>
+	
 	      
 </body>
 <script type="text/javascript">
